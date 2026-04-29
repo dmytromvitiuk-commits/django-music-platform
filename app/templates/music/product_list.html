@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <a href="{% url 'product_create' %}" class="btn">Додати Трек +</a>
+    <hr>
+    <ul>
+        {% for cat in categories %}
+            <li>
+                <strong>{{ cat.name }}</strong>
+                <a href="{% url 'product_detail' cat.id %}">[Переглянути]</a>
+                <a href="{% url 'product_update' cat.id %}">[Редагувати]</a>
+            </li>
+        {% empty %}
+            <p>Треків ще немає.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

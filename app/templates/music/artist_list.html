@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <a href="{% url 'artist_create' %}" class="btn">Додати Виконавця +</a>
+    <hr>
+    <ul>
+        {% for cat in categories %}
+            <li>
+                <strong>{{ cat.name }}</strong>
+                <a href="{% url 'artist_detail' cat.id %}">[Переглянути]</a>
+                <a href="{% url 'artist_update' cat.id %}">[Редагувати]</a>
+            </li>
+        {% empty %}
+            <p>Виконавців ще немає.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

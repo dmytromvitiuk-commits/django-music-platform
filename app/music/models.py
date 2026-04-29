@@ -1,6 +1,6 @@
 from django.db import models
 
-# 1. Обов'язкова модель: Категорія (у нашому випадку - Жанр музики)
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Назва жанру")
     description = models.TextField(blank=True, verbose_name="Опис жанру")
@@ -8,7 +8,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# 2. Обов'язкова модель: Товар (у нашому випадку - Музичний трек)
+
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Назва треку")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Жанр")
@@ -19,7 +19,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# 3. Ваша власна модель: Виконавець (Artist)
+
 class Artist(models.Model):
     name = models.CharField(max_length=255, verbose_name="Ім'я/Назва виконавця")
     bio = models.TextField(blank=True, verbose_name="Біографія")

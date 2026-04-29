@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>Видалення Пісень</h1>
+    <p>Ви впевнені, що хочете видалити Пісню <strong>"{{ product.name }}"</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Так, видалити</button>
+        <a href="{% url 'product_list' %}" class="btn">Ні, повернутися</a>
+    </form>
+{% endblock %}

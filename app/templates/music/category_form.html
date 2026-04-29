@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Зберегти</button>
+    </form>
+    <br>
+    <a href="{% url 'category_list' %}">← Скасувати</a>
+{% endblock %}  

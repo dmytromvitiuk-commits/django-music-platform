@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>Виконавець: {{ artist.name }}</h1>
+    <p><strong>Опис:</strong> {{ artist.description }}</p>
+    
+    <a href="{% url 'artist_update' artist.id %}" class="btn">Редагувати</a>
+    <a href="{% url 'artist_delete' artist.id %}" class="btn btn-danger">Видалити</a>
+    <br><br>
+    <a href="{% url 'artist_list' %}">← Назад до списку</a>
+{% endblock %}
