@@ -1,10 +1,14 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+# Віртуальне середовище
+.venv/
 
-# Virtual environments
-.venv
+# База даних (дуже важливо!)
+*.sqlite3
+db.sqlite3
+app/db.sqlite3
+
+# Кеш
+__pycache__/
+*.py[cod]
+
+# Секретні ключі
+.env

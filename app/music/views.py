@@ -4,6 +4,7 @@ from .forms import CategoryForm, ProductForm, ArtistForm
 
 
 
+
 def category_list_view(request):
     categories = Category.objects.all()
     context = {"title": "Список жанрів", "categories": categories}
@@ -11,7 +12,14 @@ def category_list_view(request):
 
 def category_detail_view(request, id):
     category = get_object_or_404(Category, id=id)
-    context = {"title": f"Жанр - {category.name}", "category": category}
+  
+    tracks = Product.objects.filter(category=category)
+    
+    context = {
+        "title": f"Жанр - {category.name}", 
+        "category": category,
+        "tracks": tracks  
+    }
     return render(request, 'music/category_detail.html', context)
 
 def category_create_view(request):
@@ -81,6 +89,7 @@ def product_delete_view(request, id):
     return render(request, 'music/product_confirm_delete.html', {"title": "Видалити трек", "product": product})
 
 
+
 def artist_list_view(request):
     artists = Artist.objects.all()
     return render(request, 'music/artist_list.html', {"title": "Список виконавців", "artists": artists})
@@ -110,3 +119,29 @@ def artist_delete_view(request, id):
         artist.delete()
         return redirect('artist_list')
     return render(request, 'music/artist_confirm_delete.html', {"title": "Видалити виконавця", "artist": artist})
+
+from django.shortcuts import redirect
+
+
+def add_to_playlist(request, track_id):
+    
+    playlist = request.session.get('playlist', [])
+    
+    
+    if track_id not in playlist:
+        playlist.append(track_id)
+        
+        request.session['playlist'] = playlist
+        
+   
+    return redirect(request.META.get('HTTP_REFERER', 'product_list'))
+
+
+def view_playlist(request):
+    
+    playlist_ids = request.session.get('playlist', [])
+    
+    
+    tracks = Product.objects.filter(id__in=playlist_ids)
+    
+    return render(request, 'music/playlist.html', {'tracks': tracks})

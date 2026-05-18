@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock %}
+
+{% block title %}Усі треки{% endblock %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <a href="{% url 'product_create' %}" class="btn">Додати Трек +</a>
-    <hr>
-    <ul>
-        {% for cat in categories %}
-            <li>
-                <strong>{{ cat.name }}</strong>
-                <a href="{% url 'product_detail' cat.id %}">[Переглянути]</a>
-                <a href="{% url 'product_update' cat.id %}">[Редагувати]</a>
-            </li>
+    <div style="margin-bottom: 40px; text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-top: 15px; margin-bottom: 10px;">Усі треки</h1>
+        <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-top: 0;">
+            Повний каталог нашої музики в одному місці.
+        </p>
+    </div>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        {% for product in products %}
+            <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 15px 25px; text-align: left;">
+                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span style="font-size: 1.2rem; font-weight: bold; color: #fff;">{{ product.name }}</span>
+                    
+                    {% if product.artist %}
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.95rem;">
+                            · {{ product.artist.name }}
+                        </span>
+                    {% endif %}
+                    
+                    <a href="{% url 'category_detail' product.category.id %}" 
+                       style="font-size: 0.8rem; background: rgba(255,255,255,0.15); color: #fff; padding: 4px 12px; border-radius: 20px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease;">
+                        {{ product.category.name }}
+                    </a>
+                </div>
+                <div style="font-weight: bold; color: #fff; font-size: 1.1rem; background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 15px; white-space: nowrap; margin-left: 15px;">
+                    <a href="{% url 'add_to_playlist' product.id %}" style="background: rgba(255,255,255,0.2); color: #fff; text-decoration: none; padding: 5px 12px; border-radius: 15px; font-weight: bold; margin-right: 15px; transition: 0.3s;">
+    + Додати
+</a>
+                    {{ product.price }} ₴
+                </div>
+            </div>
         {% empty %}
-            <p>Треків ще немає.</p>
+            <div class="glass-card" style="text-align: center; color: rgba(255,255,255,0.7);">
+                У каталозі ще немає треків.
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
