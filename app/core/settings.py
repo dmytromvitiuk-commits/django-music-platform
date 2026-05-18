@@ -23,7 +23,8 @@ SECRET_KEY = 'django-insecure-oa=-eo=h*q)s-4*a4a)jx!=5-jlc2afod$^d5sad(_6w1&91#_
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
 
 
 
@@ -118,3 +119,4 @@ STATIC_URL = 'static/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
