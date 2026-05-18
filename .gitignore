@@ -1,14 +1,14 @@
-# Віртуальне середовище
+
 .venv/
 
-# База даних (дуже важливо!)
-*.sqlite3
-db.sqlite3
-app/db.sqlite3
 
-# Кеш
+#*.sqlite3
+#db.sqlite3
+#app/db.sqlite3
+
+
 __pycache__/
 *.py[cod]
 
-# Секретні ключі
+
 .env

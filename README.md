@@ -1,15 +1,4 @@
-# 🎵 Система з підбору музики (Music Recommendation Platform)
 
-Цей вебзастосунок розробляється на базі Django. Платформа дозволяє користувачам знаходити музику за жанром та стилем, а також формувати власні плейлисти.
-
-## 🛠 Технології
-- **Python** + **Django**
-- Менеджер пакетів: **uv**
-
-## 🚀 Як запустити проєкт локально
-
-1. Переконайтеся, що у вас встановлено швидкий менеджер пакетів [uv](https://github.com/astral-sh/uv).
-2. Клонуйте цей репозиторій на свій комп'ютер.
-3. Встановіть усі залежності проєкту:
-   ```bash
-   uv sync
+git clone [https://github.com/dmytromvitiuk-commits/django-music-platform.git](https://github.com/dmytromvitiuk-commits/django-music-platform.git)
+cd my_django_project
+http://127.0.0.1:8000
